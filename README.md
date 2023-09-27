@@ -1,0 +1,33 @@
+# public-api-requests-employee-directory
+Unit 05 project for the Full Stack JavaScript Techdegree. This is an employee directory for a fictional company, ‘Awesome Startup’. This directory helps all the remote employees share contact information with each other.
+
+For this fictional company, this code uses the Random User Generator API  (https://randomuser.me/) to grab information for 12 random “employees” and build an employee directory.
+
+## Installation
+
+There is nothing required to install for this project.
+
+## Usage
+
+This code requests a JSON object from the API and parses the data os that 12 employees are listed in a grid with their thumbnail image, full name, email, and location. Clicking the cmployee’s image or name will open a modal window with more detailed information, such as the employee’s birthday and address.
+
+## Extra Features
+
+This code includes several additional features:
+* Search feature - filter the directory by name. Needed to adjust the API request to retrieve a user nationality that will only return data in the English alphabet.
+* Modal toggle - can toggle between employees while the modal window is open.
+* Structure, style and CSS were updated:
+  * Background image….
+  * font….
+
+
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
