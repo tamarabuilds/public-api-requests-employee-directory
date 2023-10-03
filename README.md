@@ -19,8 +19,9 @@ This code requests a JSON object from the API and parses the data os that 12 emp
 * Search feature - filter the directory by name. Needed to adjust the API request to retrieve a user nationality that will only return data in the English alphabet.
 * Modal toggle - can toggle between employees while the modal window is open.
 * Structure, style and CSS were updated:
+  * Updated font to Lexend to improve readability. Learn more: https://www.lexend.com/
   * Background image….
-  * font….
+  * 
 
 
 ## Contributing
