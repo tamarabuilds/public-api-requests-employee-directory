@@ -18,7 +18,8 @@ body {
     font-family: 'Lexend', sans-serif;
     text-align: center;
     /* background: rgba(235, 235, 235, 0.9); */
-    background-image: url('images/pexels-sound-on-3394650.jpg');
+    /* background from https://css-tricks.com/almanac/properties/b/background-image/ */
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/652/confectionary.png);
 }
 
 header {
