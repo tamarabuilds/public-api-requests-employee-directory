@@ -20,8 +20,7 @@ This code requests a JSON object from the API and parses the data os that 12 emp
 * Modal toggle - can toggle between employees while the modal window is open.
 * Structure, style and CSS were updated:
   * Updated font to Lexend to improve readability. Learn more: https://www.lexend.com/
-  * Background image….
-  * 
+  * Background image updated
 
 
 ## Contributing
