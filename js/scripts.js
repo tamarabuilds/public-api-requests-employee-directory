@@ -1,27 +1,29 @@
-/**
+/*************************************************************************************
  * Employee directory generated from random "employees" with Random User API data.
  * Treehouse Fullstack Javascript course unit 5 project
+ * ***********************************************************************************
  */
 
 // Variables for DOM manipulation
-const gallery = document.querySelector('#gallery')
+const gallery = document.querySelector('#gallery');
+const search = document.querySelector('.search-container');
 let modalContainer;
 let closeButton;
 let users = [];
 
 /**
- * 'getUsers' will fetch data for 12 users from the Random User API
- * 
+ * 'getUsers' will fetch data for 12 users from the Random User API.
+ *  Only including users with English-speaking nationalities to enable search functionality.
  */
 async function getUsers(){
     try{
-        const response = await fetch(`https://randomuser.me/api/?results=12`);
+        const response = await fetch(`https://randomuser.me/api/?results=12&nat=us,gb,nz,ie,au`);
 
         if(!response.ok) throw new Error(`Something went wrong`);
         users = await response.json();
         users = users.results
         displayUsers(users);
-        //////////////////////////// Should I be using .then and .catch blocks or just try/catch so it mimicks more sychronous code?
+                                         //////////////////////////// Should I be using .then and .catch blocks or just try/catch so it mimicks more sychronous code?
 
     } catch(error){
         throw Error(`Error with getting users:`, error)
@@ -29,11 +31,14 @@ async function getUsers(){
 };
 
 /***
- * 'displayUsers' will create a card for each user displaying their photo, name, email and location
+ * 'displayUsers' will create a card for each user displaying their photo, name, email and location.
  * 
- * @param {array} users - details for the random users with name, email, picture, and location
+ * @param {array} users - details for the random users with name, email, picture, and location.
  */
 function displayUsers(users){
+    // Clearing HTML before inserting users 
+    gallery.innerHTML = '';
+
     users.map( user => {
         const div = document.createElement('div');
         gallery.appendChild(div);
@@ -55,12 +60,28 @@ function displayUsers(users){
 };
 
 /***
- * 'formatCell' formats mixed array of numbers & characters into (xxx) xxx-xxxx formatting 
- * if length of raw numbers is not 10, default formatting is [2 nums]-[2 nums]-[2 until end nums], xx-xx-xxx
- * For example, 123456, would format to: 12-34-56
- * For example, 1234567890, would format to (123) 456-7890
+ * 'showSearch' enables the search bar to appear on the page.
+ */
+function showSearch(){
+    const html = `
+        <form action="#" method="get">
+            <input type="search" id="search-input" class="search-input" placeholder="Search...">
+            <input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">
+        </form>
+    `
+    search.insertAdjacentHTML('afterbegin', html);
+};
+
+
+
+
+/***
+ * 'formatCell' formats mixed array of numbers & characters into (xxx) xxx-xxxx formatting.
+ * if length of raw numbers is not 10, default formatting is [2 nums]-[2 nums]-[2 until end nums], xx-xx-xxx.
+ *      For example, 123456, would format to: 12-34-56
+ *      For example, 1234567890, would format to (123) 456-7890
  * 
- * Got help in capture groups from: https://javascript.info/regexp-groups
+ * Got help in capture groups from: https://javascript.info/regexp-groups.
  * 
  * @param {array} cellRaw - cell number with mix of numbers, spaces and characters such as (),-
  * @returns {string} formatted cell number 
@@ -126,7 +147,7 @@ function displayUserModal(user){
             </div>
         </div>
     `
-    console.log(user)
+    console.log(user)                                                       /// REMOVE BEFORE SUBMISSION
     
     gallery.insertAdjacentHTML('afterend', html);
 };
@@ -155,7 +176,28 @@ gallery.addEventListener('click', (e)=> {
 });
 
 /**
- * @event - event listener that will close the modal if user clicks on button-close
+ * @event - Listens for search and updates display cards real time
+ */
+search.addEventListener('keyup', (e)=> {
+    const filteredList = [];
+    const input = e.target.value.toLowerCase();
+
+    users.forEach( user => {
+        const fullName = user.name.first.toLowerCase() + user.name.last.toLowerCase();
+        if (fullName.includes(input)) {
+            filteredList.push(user);
+        }
+
+        if (filteredList.length > 0) {
+            displayUsers(filteredList);
+        } else {
+            gallery.innerHTML = `<h2>Sorry, no results found</h2>`
+        }
+    });
+});
+
+/**
+ * @event - listener will close the modal if user clicks on button-close
  */
 document.addEventListener('click', (e)=> {
    const closeButton = e.target.closest('#modal-close-btn');
@@ -166,21 +208,21 @@ document.addEventListener('click', (e)=> {
 });
 
 
-// document.addEventListener('click', (e)=>{
-//     if (modalContainer){
-//         modalContainer.addEventListener('click', (e)=> {
-//             console.log(`here`)
-//         });
 
-//     }
-
-                    /// CHALLENGE FOR LATER: closing outside of modal
-                    //     const isModal = e.target.closest('.modal')
-                    //     if (!isModal) {
-                    //        modalContainer = document.querySelector('.modal-container');
-                    //         closeModal();
-                    //    }
-
+/// CHALLENGE FOR LATER: closing outside of modal
+//     const isModal = e.target.closest('.modal')
+//     if (!isModal) {
+    //        modalContainer = document.querySelector('.modal-container');
+    //         closeModal();
+    //    }
+    // document.addEventListener('click', (e)=>{
+    //     if (modalContainer){
+    //         modalContainer.addEventListener('click', (e)=> {
+    //             console.log(`here`)
+    //         });
+    
+    //     }
+    
 
 // })
 
@@ -189,5 +231,6 @@ document.addEventListener('click', (e)=> {
 
 
 
-// Call 'getUsers' to then display their data
+// Initalize page
 getUsers();
+showSearch();

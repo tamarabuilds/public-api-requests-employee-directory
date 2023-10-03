@@ -25,8 +25,7 @@ This code requests a JSON object from the API and parses the data os that 12 emp
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 
 ## License
