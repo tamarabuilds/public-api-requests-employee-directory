@@ -8,8 +8,21 @@
 const body = document.querySelector('body');
 const gallery = document.querySelector('#gallery');
 const search = document.querySelector('.search-container');
-let modalContainer;
+// let modalContainer;
 let users = [];
+
+/***
+ * 'showSearch' enables the search bar to appear on the page.
+ */
+function showSearch(){
+    const html = `
+        <form action="#" method="get">
+            <input type="search" id="search-input" class="search-input" placeholder="Search...">
+            <input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">
+        </form>
+    `
+    search.insertAdjacentHTML('afterbegin', html);
+};
 
 /**
  * 'getUsers' will fetch data for 12 users from the Random User API.
@@ -23,8 +36,6 @@ async function getUsers(){
         users = await response.json();
         users = users.results
         displayUsers(users);
-                                         //////////////////////////// Should I be using .then and .catch blocks or just try/catch so it mimicks more sychronous code?
-
     } catch(error){
         throw Error(`Error with getting users:`, error)
     }
@@ -57,21 +68,6 @@ function displayUsers(users){
         div.insertAdjacentHTML("afterbegin",html);
     })
 };
-
-/***
- * 'showSearch' enables the search bar to appear on the page.
- */
-function showSearch(){
-    const html = `
-        <form action="#" method="get">
-            <input type="search" id="search-input" class="search-input" placeholder="Search...">
-            <input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">
-        </form>
-    `
-    search.insertAdjacentHTML('afterbegin', html);
-};
-
-
 
 
 /***
@@ -157,10 +153,9 @@ function displayUserModal(user){
  * 'closeModal' will close the modal overlay
  */
 const closeModal = () => {
-    modalContainer = document.querySelector('.modal-container');
+    const modalContainer = document.querySelector('.modal-container');
     body.removeChild(modalContainer);
 }
-
 
 /***
  * @event - Listens for selecting a card, updates modal with selected user details, calls display overlay
