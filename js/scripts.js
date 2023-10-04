@@ -5,10 +5,10 @@
  */
 
 // Variables for DOM manipulation
+const body = document.querySelector('body');
 const gallery = document.querySelector('#gallery');
 const search = document.querySelector('.search-container');
 let modalContainer;
-let closeButton;
 let users = [];
 
 /**
@@ -55,7 +55,6 @@ function displayUsers(users){
             </div>
         `
         div.insertAdjacentHTML("afterbegin",html);
-        console.log(user)
     })
 };
 
@@ -145,17 +144,22 @@ function displayUserModal(user){
                     <p class="modal-text">Birthday: ${birthdayformatted}</p>
                 </div>
             </div>
+            <div class="modal-btn-container">
+                <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
+                <button type="button" id="modal-next" class="modal-next btn">Next</button>
+            </div>
         </div>
     `
-    console.log(user)                                                       /// REMOVE BEFORE SUBMISSION
-    
-    gallery.insertAdjacentHTML('afterend', html);
+    body.insertAdjacentHTML('afterbegin', html)
 };
 
 /**
  * 'closeModal' will close the modal overlay
  */
-const closeModal = () => modalContainer.style.display = 'none';
+const closeModal = () => {
+    modalContainer = document.querySelector('.modal-container');
+    body.removeChild(modalContainer);
+}
 
 
 /***
@@ -198,34 +202,70 @@ search.addEventListener('keyup', (e)=> {
 
 /**
  * @event - listener will close the modal if user clicks on button-close
+ *
  */
 document.addEventListener('click', (e)=> {
    const closeButton = e.target.closest('#modal-close-btn');
    if (closeButton) {
-        modalContainer = document.querySelector('.modal-container');
         closeModal();
     }
+
+});
+
+/**
+ * @event - lisenter for modal previous and next button clicks to show the previous or next user
+ */
+
+document.addEventListener('click', (e)=> {
+    const modalPrev = e.target.closest('#modal-prev');
+    const modalNext = e.target.closest('#modal-next');
+
+    const currentName = document.querySelector('#name').innerText;
+    let currentIndex = null;
+    
+    // Get the index of the current modal user
+    for (let i = 0; i < users.length; i++){
+        const fullName = `${users[i].name.first} ${users[i].name.last}`;
+        if (fullName === currentName) {
+            currentIndex = i
+        }
+    }
+
+    // Display previous user if 'Prev' was clicked
+    if (modalPrev && currentIndex) {
+        closeModal();
+        displayUserModal(users[`${currentIndex - 1}`])
+    }
+
+    // Display next user is 'Next' was clicked
+    if (modalNext && currentIndex < users.length - 1) {
+        closeModal();
+        displayUserModal(users[`${currentIndex + 1}`])
+    }
+    
+
 });
 
 
 
-/// CHALLENGE FOR LATER: closing outside of modal
+// // /////////////////////////CHALLENGE FOR LATER: allow user to click off the modal to close modal
+// document.addEventListener('click', (e)=> {
+
 //     const isModal = e.target.closest('.modal')
-//     if (!isModal) {
-    //        modalContainer = document.querySelector('.modal-container');
-    //         closeModal();
-    //    }
-    // document.addEventListener('click', (e)=>{
-    //     if (modalContainer){
-    //         modalContainer.addEventListener('click', (e)=> {
-    //             console.log(`here`)
-    //         });
-    
-    //     }
-    
+//     const modalVisible = body.querySelector('.modal-container')
+//     console.log(modalVisible)
+//     console.log(isModal)
+//     console.log(modalContainer)
 
-// })
 
+//     if (!isModal && modalVisible) {
+//         console.log(modalContainer)
+//         console.log(`here`)
+//         modalContainer = document.querySelector('.modal-container');
+//         closeModal();
+//     }
+
+// });
 
 
 

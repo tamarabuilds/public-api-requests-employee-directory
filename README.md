@@ -3,6 +3,7 @@ Unit 05 project for the Full Stack JavaScript Techdegree. This is an employee di
 
 For this fictional company, this code uses the Random User Generator API  (https://randomuser.me/) to grab information for 12 random “employees” and build an employee directory.
 
+Learn more about the developer on <a href="www.linkedin.com/in/tamarabuilds" target="_blank">LinkedIn</a>
 
 ## Installation
 
