@@ -20,6 +20,12 @@ There is nothing required to install for this project.
 This code requests a JSON object from the API and parses the data os that 12 employees are listed in a grid with their thumbnail image, full name, email, and location. Clicking the cmployee’s image or name will open a modal window with more detailed information, such as the employee’s birthday and address.
 
 
+## Technologies Used
+
+* JavaScript
+* CSS (project file provided by Treehouse, slighly modified for styling)
+* HTML (prokect file provided by Treehouse)
+
 ## Extra Features
 
 * Search feature - filter the directory by name. Needed to adjust the API request to retrieve a user nationality that will only return data in the English alphabet.
