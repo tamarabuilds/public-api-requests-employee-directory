@@ -1,9 +1,14 @@
 # public-api-requests-employee-directory
+Learn more about the developer on <a href="https://www.linkedin.com/in/tamarabuilds/" target="_blank">LinkedIn</a>
+
+![Screenshot 2023-10-03 at 8 52 47 PM](https://github.com/tamarabuilds/public-api-requests-employee-directory/assets/98510821/11b06833-7682-4d69-ac25-104746ee6e45)
+
+
 Unit 05 project for the Full Stack JavaScript Techdegree. This is an employee directory for a fictional company, ‘Awesome Startup’. This directory helps all the remote employees share contact information with each other.
 
 For this fictional company, this code uses the Random User Generator API  (https://randomuser.me/) to grab information for 12 random “employees” and build an employee directory.
 
-Learn more about the developer on <a href="www.linkedin.com/in/tamarabuilds" target="_blank">LinkedIn</a>
+
 
 ## Installation
 
