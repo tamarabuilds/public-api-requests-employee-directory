@@ -8,8 +8,8 @@
 const body = document.querySelector('body');
 const gallery = document.querySelector('#gallery');
 const search = document.querySelector('.search-container');
-// let modalContainer;
 let users = [];
+
 
 /***
  * 'showSearch' enables the search bar to appear on the page.
@@ -23,6 +23,7 @@ function showSearch(){
     `
     search.insertAdjacentHTML('afterbegin', html);
 };
+
 
 /**
  * 'getUsers' will fetch data for 12 users from the Random User API.
@@ -40,6 +41,7 @@ async function getUsers(){
         throw Error(`Error with getting users:`, error)
     }
 };
+
 
 /***
  * 'displayUsers' will create a card for each user displaying their photo, name, email and location.
@@ -98,6 +100,7 @@ function formatCell(cellRaw){
     }
 }
 
+
 /**
  * 'formatBirthday' takes in standardized time and returns user's date of birth in MM/DD/YYYY format
  * 
@@ -113,6 +116,7 @@ function formatBirthday(dateRaw){
     ];
     return `${(month + 1 <= 9 ? '0'+ (month+1): (month+1))}/${day <= 9 ? '0' + day : day}/${year}`
 };
+
 
 /***
  * 'displayUserModal' provides details on the selected user on a modal
@@ -146,16 +150,18 @@ function displayUserModal(user){
             </div>
         </div>
     `
-    body.insertAdjacentHTML('afterbegin', html)
+    gallery.insertAdjacentHTML('afterbegin', html)
 };
+
 
 /**
  * 'closeModal' will close the modal overlay
  */
 const closeModal = () => {
     const modalContainer = document.querySelector('.modal-container');
-    body.removeChild(modalContainer);
+    modalContainer.remove();
 }
+
 
 /***
  * @event - Listens for selecting a card, updates modal with selected user details, calls display overlay
@@ -173,6 +179,7 @@ gallery.addEventListener('click', (e)=> {
     });
     displayUserModal(user);
 });
+
 
 /**
  * @event - Listens for search and updates display cards real time
@@ -195,6 +202,7 @@ search.addEventListener('keyup', (e)=> {
     });
 });
 
+
 /**
  * @event - listener will close the modal if user clicks on button-close
  *
@@ -206,6 +214,7 @@ document.addEventListener('click', (e)=> {
     }
 
 });
+
 
 /**
  * @event - lisenter for modal previous and next button clicks to show the previous or next user
@@ -242,25 +251,24 @@ document.addEventListener('click', (e)=> {
 });
 
 
+/**
+ * @event - listens for clicks off of the modal to close it when it's open
+ */
+// Added after submission with help from @Liz T. and @Nicole D.
+document.addEventListener('click', (e)=> {
+    if (e.target.parentElement === gallery) {
+        closeModal();
+    }
+});
 
-// // /////////////////////////CHALLENGE FOR LATER: allow user to click off the modal to close modal
-// document.addEventListener('click', (e)=> {
 
-//     const isModal = e.target.closest('.modal')
-//     const modalVisible = body.querySelector('.modal-container')
-//     console.log(modalVisible)
-//     console.log(isModal)
-//     console.log(modalContainer)
-
-
-//     if (!isModal && modalVisible) {
-//         console.log(modalContainer)
-//         console.log(`here`)
-//         modalContainer = document.querySelector('.modal-container');
-//         closeModal();
-//     }
-
-// });
+/**
+ * @event - listens for escape key to close the modal
+*/
+// Added after submission with help from @Liz T. and @Nicole D.
+document.addEventListener('keyup', (e)=> {
+    if (e.key === 'Escape') closeModal();
+});
 
 
 
