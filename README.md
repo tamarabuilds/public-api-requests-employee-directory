@@ -3,6 +3,7 @@ Learn more about the developer on <a href="https://www.linkedin.com/in/tamarabui
 
 ![Screenshot 2023-10-03 at 8 52 47 PM](https://github.com/tamarabuilds/public-api-requests-employee-directory/assets/98510821/11b06833-7682-4d69-ac25-104746ee6e45)
 
+Live site: https://tamarabuilds.github.io/public-api-requests-employee-directory/
 
 Unit 05 project for the Full Stack JavaScript Techdegree. This is an employee directory for a fictional company, ‘Awesome Startup’. This directory helps all the remote employees share contact information with each other.
 
